@@ -9,18 +9,18 @@ import lombok.Data;
 @Data
 public class UserDto {
 
-    @NotNull
-    @Size(min = 4, max = 255)
+    @NotNull(message = "{app.constraint.username.NotNull.message}")
+    @Size(min = 4, max = 255, message = "{app.constraint.username.Size.message}" )
     @UniqueUsername
     private String username;
 
-    @NotNull
-    @Size(min = 4, max = 255)
+    @NotNull(message = "{app.constraint.name.NotNull.message}")
+    @Size(min = 4, max = 255, message = "{app.constraint.name.Size.message}" )
     private String name;
 
-    @NotNull
-    @Size(min = 8, max = 255)
-    @Pattern(regexp = "^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d).*$")
+    @NotNull(message = "{app.constraint.password.NotNull.message}")
+    @Size(min = 8, max = 255, message = "{app.constraint.password.Size.message}")
+    @Pattern(regexp = "^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d).*$", message = "{app.constraint.password.Pattern.message}")
     private String password;
 
 }
