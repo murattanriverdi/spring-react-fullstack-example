@@ -1,9 +1,9 @@
-import React from "react";
-import { signup, changeLanguage } from "../api/apiCalls";
+import React, { Component } from "react";
+import { signup } from "../api/apiCalls";
 import Input from "../components/InputComponent";
 import { withTranslation } from 'react-i18next';
 
-class UserSignupPage extends React.Component {
+class UserSignupPage extends Component {
 
     state = {
         username: null,
@@ -56,11 +56,6 @@ class UserSignupPage extends React.Component {
         this.setState({ isApiCallWaiting: false })
     }
 
-    onChangeLanguage = language  => {
-        const { i18n } = this.props;
-        i18n.changeLanguage(language);
-        changeLanguage(language);
-    }
 
 
     render() {
@@ -82,10 +77,6 @@ class UserSignupPage extends React.Component {
                             {isApiCallWaiting && <span className="spinner-border spinner-border-sm"></span>}
                             {t('signUp')}
                         </button>
-                    </div>
-                    <div>
-                    <img src="https://flagsapi.com/TR/flat/24.png" className="pe-auto" role="button" alt="Turkish Flag" onClick={() => this.onChangeLanguage('tr')}/>
-                    <img src="https://flagsapi.com/US/flat/24.png" className="pe-auto" role="button" alt="USA Flag" onClick={() => this.onChangeLanguage('en')}/>
                     </div>
                 </form >
             </div>

@@ -11,9 +11,10 @@ i18n.use(initReactI18next).init({
                 'name' : 'Name Surname',
                 'password' : 'Password',
                 'passwordRepeat' : 'Password Repeat',
-                'passwordMismatch' : 'Password Mismatch'
-
-                
+                'passwordMismatch' : 'Password Mismatch',
+                'login' : 'Login',
+                'turkishFlag' : 'Turkish Flag',
+                'usaFlag' : 'USA Flag'
             }
         },
         tr : {
@@ -23,8 +24,10 @@ i18n.use(initReactI18next).init({
                 'name' : 'Ad Soyad',
                 'password' : 'Parola',
                 'passwordRepeat' : 'Parola (Tekrar)',
-                'passwordMismatch' : 'Parolalar uyuşmuyor'
-
+                'passwordMismatch' : 'Parolalar uyuşmuyor',
+                'login' : 'Giriş Yap',
+                'turkishFlag' : 'Türk Bayrağı',
+                'usaFlag' : 'Amerikan Bayrağı'
             }
         }
     },
