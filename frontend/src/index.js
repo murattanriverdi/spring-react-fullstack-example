@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom/client';
 import './index.css';
 import UserSignupPage from './pages/UserSignupPage';
 import reportWebVitals from './reportWebVitals';
+import './i18n';
 import './bootstrap-app.scss';
 
 
