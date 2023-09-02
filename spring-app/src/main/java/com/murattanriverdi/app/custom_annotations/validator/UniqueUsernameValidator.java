@@ -1,7 +1,6 @@
-package com.murattanriverdi.app.customAnnotations.validator;
+package com.murattanriverdi.app.custom_annotations.validator;
 
-import com.murattanriverdi.app.customAnnotations.UniqueUsername;
-import com.murattanriverdi.app.entity.User;
+import com.murattanriverdi.app.custom_annotations.UniqueUsername;
 import com.murattanriverdi.app.repository.UserRepository;
 import jakarta.validation.ConstraintValidator;
 import jakarta.validation.ConstraintValidatorContext;
@@ -14,9 +13,6 @@ public class UniqueUsernameValidator implements ConstraintValidator<UniqueUserna
 
     @Override
     public boolean isValid(String username, ConstraintValidatorContext context) {
-        User user = userRepository.findByUsername(username);
-        if(null != user)
-                return false;
-        return true;
+        return null == userRepository.findByUsername(username);
     }
 }

@@ -1,8 +1,8 @@
 package com.murattanriverdi.app.service;
 
-import com.murattanriverdi.app.dto.UserDto;
+import com.murattanriverdi.app.dto.request.UserRequestDto;
 
 public interface IUserService {
 
-    public void save(UserDto userDto);
+    public void save(UserRequestDto userDto);
 }

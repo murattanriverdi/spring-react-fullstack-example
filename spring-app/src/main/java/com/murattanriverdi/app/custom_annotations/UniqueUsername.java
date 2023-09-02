@@ -1,6 +1,6 @@
-package com.murattanriverdi.app.customAnnotations;
+package com.murattanriverdi.app.custom_annotations;
 
-import com.murattanriverdi.app.customAnnotations.validator.UniqueUsernameValidator;
+import com.murattanriverdi.app.custom_annotations.validator.UniqueUsernameValidator;
 import jakarta.validation.Constraint;
 import jakarta.validation.Payload;
 

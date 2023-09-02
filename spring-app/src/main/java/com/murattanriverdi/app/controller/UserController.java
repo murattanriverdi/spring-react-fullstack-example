@@ -1,6 +1,6 @@
 package com.murattanriverdi.app.controller;
 
-import com.murattanriverdi.app.dto.UserDto;
+import com.murattanriverdi.app.dto.request.UserRequestDto;
 import com.murattanriverdi.app.error.ApiError;
 import com.murattanriverdi.app.service.IUserService;
 import com.murattanriverdi.app.util.ApiResponse;
@@ -25,24 +25,12 @@ public class UserController {
 
     @PostMapping("/api/v1.0/users")
     @ResponseStatus(HttpStatus.OK)
-    public ApiResponse saveUser(@Valid @RequestBody UserDto userDto) {
+    public ApiResponse saveUser(@Valid @RequestBody UserRequestDto userDto) {
         userService.save(userDto);
         return new ApiResponse("User created");
 
     }
 
-    @ExceptionHandler(MethodArgumentNotValidException.class)
-    @ResponseStatus(HttpStatus.BAD_REQUEST)
-    public ApiError handleValidException(MethodArgumentNotValidException exception) {
-        ApiError apiError = new ApiError(400, "Validation error", "/api/v1.0/users");
-        Map<String, String> validationErrors = new HashMap<>();
-
-        for (FieldError fieldError : exception.getBindingResult().getFieldErrors()) {
-            validationErrors.put(fieldError.getField(), fieldError.getDefaultMessage());
-        }
-        apiError.setValidationErrors(validationErrors);
-        return apiError;
-    }
 
 
 }

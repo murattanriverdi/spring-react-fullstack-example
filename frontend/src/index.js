@@ -2,6 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
 import UserLoginPage from './pages/UserLoginPage';
+import UserSignupPage from './pages/UserSignupPage';
 import ChangeLanguageComponent from './components/ChangeLanguageComponent';
 import reportWebVitals from './reportWebVitals';
 import './i18n';
@@ -9,9 +10,10 @@ import './bootstrap-app.scss';
 
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
+
 root.render(
   <React.StrictMode>
-    <UserLoginPage />
+    <UserSignupPage />
     <ChangeLanguageComponent />
 
   </React.StrictMode>
