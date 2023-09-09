@@ -1,13 +1,13 @@
-import axios  from 'axios'
+import axios from 'axios'
 
 //axios.defaults.headers['accept-language'] = 'tr';
 
 export const signupCalls = (body) => {
-    return axios.post('/api/v1.0/users', body);
+    return axios.post('/api/v1.0/signup', body);
 }
 
 export const loginCalls = credential => {
-    return axios.post('/api/v1.0/auth',{},{auth : credential})
+    return axios.post('/api/v1.0/auth', {}, { auth: credential })
 }
 
 export const changeAxiosLanguage = language => {
