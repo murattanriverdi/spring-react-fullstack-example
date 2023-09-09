@@ -23,7 +23,7 @@ public class UserController {
 
     private final IUserService userService;
 
-    @PostMapping("/api/v1.0/users")
+    @PostMapping("/api/v1.0/signup")
     @ResponseStatus(HttpStatus.OK)
     public ApiResponse saveUser(@Valid @RequestBody UserRequestDto userDto) {
         userService.save(userDto);

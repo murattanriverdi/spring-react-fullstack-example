@@ -3,31 +3,14 @@ import Input from '../components/InputComponent'
 import ButtonWithProgress from '../components/ButtonWithProgressComponent'
 import { withTranslation } from 'react-i18next'
 import { loginCalls } from '../api/apiCalls'
-import axios from 'axios'
+import { withApiProgress } from '../util/ApiProgress'
 
 class UserLoginPage extends Component {
 
     state = {
         username: null,
         password: null,
-        error: null,
-        isApiCallWaiting: false
-    }
-
-    // component ilk oluştuğunda çalışan life cycle
-    componentDidMount() {
-        axios.interceptors.request.use((request) => {
-            this.setState({ isApiCallWaiting: true })
-            return request;
-        })
-
-        axios.interceptors.response.use((response) => {
-            this.setState({ isApiCallWaiting: false })
-            return response;
-        }, (error) => {
-            this.setState({ isApiCallWaiting: false })
-            throw error;
-        })
+        error: null
     }
 
     onChangeInput = event => {
@@ -55,28 +38,23 @@ class UserLoginPage extends Component {
         }
     }
 
-
-
     render() {
-        const { t } = this.props
-        const { username, password, error, isApiCallWaiting } = this.state
+        const { t, isApiCallWaiting } = this.props
+        const { username, password, error } = this.state
         const buttonEnabled = username && password
 
         return (
             <div className="container">
-
-                {
-                    this.state.error &&
-                    <div className="alert alert-danger">
-                        {error}
-                    </div>
-                }
-
                 <form>
                     <h1 className="text-center">{t('login')}</h1>
                     <Input name="username" label={t('username')} onChange={this.onChangeInput} />
                     <Input name="password" label={t('password')} onChange={this.onChangeInput} type="password" />
-
+                    {
+                        this.state.error &&
+                        <div className="alert alert-danger my-3">
+                            {error}
+                        </div>
+                    }
                     <div className='text-center'>
                         <ButtonWithProgress
                             disabled={!buttonEnabled || isApiCallWaiting}
@@ -90,4 +68,6 @@ class UserLoginPage extends Component {
     }
 }
 
-export default withTranslation()(UserLoginPage)
+const LoginPageWithTranslation = withTranslation()(UserLoginPage);
+
+export default withApiProgress(LoginPageWithTranslation, '/api/v1.0/auth')
