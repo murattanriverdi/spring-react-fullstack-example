@@ -1,0 +1,11 @@
+server:
+  port: 8081
+
+
+#dev profile
+spring:
+  profiles:
+    active: dev
+
+
+

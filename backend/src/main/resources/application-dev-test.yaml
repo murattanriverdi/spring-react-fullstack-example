@@ -1,0 +1,22 @@
+#postgresql connection
+spring:
+  datasource:
+    url: jdbc:postgresql://HOST:PORT/dbname
+    username: username
+    password: password
+    driver-class-name: org.postgresql.Driver
+  jpa:
+    hibernate:
+      ddl-auto: update
+    database-platform: org.hibernate.dialect.PostgreSQLDialect
+    show-sql: true
+
+
+
+#logging level
+#logging:
+#  level:
+#    org.springframework: DEBUG
+
+
+
