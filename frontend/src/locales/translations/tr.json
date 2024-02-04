@@ -1,0 +1,9 @@
+{
+    "signUp": "Kayıt Ol",
+    "username": "Kullanıcı Adı",
+    "email": "E-Posta",
+    "password": "Parola",
+    "passwordRepeat": "Parola Tekrar",
+    "passwordMismatch": "Parolalar Uyuşmuyor",
+    "genericError": "Beklenmedik Bir Hata Oluştu. Lütfen Tekrar Deneyin."
+}
