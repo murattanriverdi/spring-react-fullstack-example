@@ -29,7 +29,9 @@ public class User {
 
     private String password;
 
+    private Boolean active = Boolean.FALSE;
 
+    private String activationToken;
 
 
 }

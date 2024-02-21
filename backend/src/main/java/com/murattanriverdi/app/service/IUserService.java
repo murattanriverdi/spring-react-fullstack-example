@@ -1,6 +1,7 @@
 package com.murattanriverdi.app.service;
 
-import com.murattanriverdi.app.dto.request.UserRequestDto;
+
+import com.murattanriverdi.app.dto.UserRequestDto;
 
 public interface IUserService {
 

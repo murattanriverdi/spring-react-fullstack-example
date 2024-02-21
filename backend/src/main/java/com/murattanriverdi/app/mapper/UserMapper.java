@@ -1,7 +1,7 @@
 package com.murattanriverdi.app.mapper;
 
-import com.murattanriverdi.app.dto.request.UserRequestDto;
-import com.murattanriverdi.app.dto.response.UserResponseDto;
+import com.murattanriverdi.app.dao.UserResponseDao;
+import com.murattanriverdi.app.dto.UserRequestDto;
 import com.murattanriverdi.app.entity.User;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
@@ -20,7 +20,7 @@ public interface UserMapper {
 
     @Mapping(target = "username", source = "username")
     @Mapping(target = "email", source = "email")
-   UserResponseDto userToResponseDto(User user);
+    UserResponseDao userToResponseDao(User user);
 
 
 }
