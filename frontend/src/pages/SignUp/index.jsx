@@ -2,7 +2,6 @@ import { useEffect, useMemo, useState } from "react";
 import { signUp } from "./api";
 import { Input } from "./components/Input";
 import { useTranslation } from "react-i18next";
-import { LanguageSelector } from "../../utils/components/languageSelector";
 
 export function SignUp() {
   const [username, setUsername] = useState();
@@ -74,12 +73,12 @@ export function SignUp() {
       return t("passwordMismatch");
     }
     return "";
-  }, [password, passwordRepeat]);
+  }, [password, passwordRepeat, t]);
 
   return (
     <div className="container">
       <div className="col-lg-6 offset-lg-3 col-md-8 offset-md-2">
-        <form className="card mt-3" onSubmit={onSubmit}>
+        <form className="card" onSubmit={onSubmit}>
           <div className="text-center card-header">
             <h1>{t("signUp")}</h1>
           </div>
@@ -138,13 +137,11 @@ export function SignUp() {
                     aria-hidden="true"
                   ></span>
                 )}
-                Sign Up
+                {t('signUp')}
               </button>
             </div>
           </div>
         </form>
-
-        <LanguageSelector />
       </div>
     </div>
   );

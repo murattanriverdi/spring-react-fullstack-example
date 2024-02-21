@@ -27,6 +27,7 @@ export function LanguageSelector() {
         width="16"
         height="12"
         alt="English"
+        className="ms-1"
         onClick={()=> onSelectLanguage('en')}
       ></img>
     </>
