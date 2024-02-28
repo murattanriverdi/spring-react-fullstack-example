@@ -2,6 +2,8 @@ import { useEffect, useMemo, useState } from "react";
 import { signUp } from "./api";
 import { Input } from "./components/Input";
 import { useTranslation } from "react-i18next";
+import { Alert } from "@/utils/components/Alert";
+import { Spinner } from "@/utils/components/Spinner";
 
 export function SignUp() {
   const [username, setUsername] = useState();
@@ -114,15 +116,15 @@ export function SignUp() {
             />
 
             {successMessage && (
-              <div className="alert alert-success" role="alert">
+              <Alert>
                 {successMessage}
-              </div>
+              </Alert>
             )}
 
             {generalError && (
-              <div className="alert alert-danger" role="alert">
+              <Alert styleType ="danger">
                 {generalError}
-              </div>
+              </Alert>
             )}
             <div className="text-center">
               <button
@@ -132,10 +134,7 @@ export function SignUp() {
                 }
               >
                 {isProcessing && (
-                  <span
-                    className="spinner-grow spinner-grow-sm"
-                    aria-hidden="true"
-                  ></span>
+                 <Spinner sm={true} />
                 )}
                 {t('signUp')}
               </button>

@@ -1,3 +1,5 @@
+import PropTypes from 'prop-types';
+
 export function Input(props){
     const { id, label, error, onChange, type } = props
 
@@ -15,4 +17,12 @@ export function Input(props){
         </div>
     </div>
     )
+}
+
+Input.propTypes = {
+    id : PropTypes.string,
+    label : PropTypes.string,
+    error : PropTypes.string,
+    onChange : PropTypes.any,
+    type : PropTypes.string
 }

@@ -33,5 +33,6 @@ public class User {
 
     private String activationToken;
 
+    private String image;
 
 }

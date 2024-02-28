@@ -6,7 +6,7 @@ import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Pattern;
 import jakarta.validation.constraints.Size;
 
-public record UserRequestDto(
+public record CreateUserRequestDto(
 
         @NotBlank(message = "{app.constraint.user.validation.username.notBlank}")
         @Size(min = 4, max = 255, message = "{app.constraint.user.validation.username.size}")
