@@ -6,9 +6,11 @@ import com.murattanriverdi.app.dto.CreateUserRequestDto;
 import com.murattanriverdi.app.exceptions.ActivationNotificationException;
 import com.murattanriverdi.app.exceptions.InvalidTokenException;
 import com.murattanriverdi.app.exceptions.NonUniqueEmailException;
+import com.murattanriverdi.app.exceptions.NotFoundException;
 import com.murattanriverdi.app.service.IUserService;
 import com.murattanriverdi.app.common.ApiResponse;
 import com.murattanriverdi.app.util.MessagesUtil;
+import jakarta.servlet.http.HttpServletRequest;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
@@ -53,11 +55,17 @@ public class UserController {
         return userService.getUserList(pageable);
     }
 
+    @GetMapping("/get/{id}")
+    UserListDao getUserById(@PathVariable Long id){
+        return userService.getUserById(id);
+    }
+
+
 
     @ExceptionHandler(MethodArgumentNotValidException.class)
-    ResponseEntity<ApiError> handleMethodArgumentNotValidException(MethodArgumentNotValidException exception) {
+    ResponseEntity<ApiError> handleMethodArgumentNotValidException(MethodArgumentNotValidException exception, HttpServletRequest request) {
         ApiError apiError = new ApiError();
-        apiError.setPath("/api/v1/users/create");
+        apiError.setPath(request.getRequestURI());
         apiError.setMessage(MessagesUtil.getMessage("app.messages.error.validation.error"));
         apiError.setStatus(HttpStatus.BAD_REQUEST.value());
 
@@ -72,9 +80,9 @@ public class UserController {
     }
 
     @ExceptionHandler(NonUniqueEmailException.class)
-    ResponseEntity<ApiError> handleNonUniqueMailException(NonUniqueEmailException exception){
+    ResponseEntity<ApiError> handleNonUniqueMailException(NonUniqueEmailException exception, HttpServletRequest request){
         ApiError apiError = new ApiError();
-        apiError.setPath("/api/v1/users/create");
+        apiError.setPath(request.getRequestURI());
         apiError.setMessage(exception.getMessage());
         apiError.setStatus(HttpStatus.BAD_REQUEST.value());
         apiError.setValidationErrors(exception.getValidationErrors());
@@ -84,9 +92,9 @@ public class UserController {
 
 
     @ExceptionHandler(ActivationNotificationException.class)
-    ResponseEntity<ApiError> handleActivationNotificationException(ActivationNotificationException exception){
+    ResponseEntity<ApiError> handleActivationNotificationException(ActivationNotificationException exception, HttpServletRequest request){
         ApiError apiError = new ApiError();
-        apiError.setPath("/api/v1/users/create");
+        apiError.setPath(request.getRequestURI());
         apiError.setMessage(exception.getMessage());
         apiError.setStatus(HttpStatus.BAD_GATEWAY.value());
         return ResponseEntity.status(HttpStatus.BAD_GATEWAY).body(apiError);
@@ -95,12 +103,22 @@ public class UserController {
 
 
     @ExceptionHandler(InvalidTokenException.class)
-    ResponseEntity<ApiError> handleInvalidTokenException(InvalidTokenException exception){
+    ResponseEntity<ApiError> handleInvalidTokenException(InvalidTokenException exception, HttpServletRequest request){
         ApiError apiError = new ApiError();
-        apiError.setPath("/api/v1/users/create");
+        apiError.setPath(request.getRequestURI());
         apiError.setMessage(exception.getMessage());
         apiError.setStatus(HttpStatus.BAD_REQUEST.value());
         return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(apiError);
+
+    }
+
+    @ExceptionHandler(NotFoundException.class)
+    ResponseEntity<ApiError> handleNotFoundException(NotFoundException exception, HttpServletRequest request){
+        ApiError apiError = new ApiError();
+        apiError.setPath(request.getRequestURI());
+        apiError.setMessage(exception.getMessage());
+        apiError.setStatus(HttpStatus.NOT_FOUND.value());
+        return ResponseEntity.status(HttpStatus.NOT_FOUND).body(apiError);
 
     }
 

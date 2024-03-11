@@ -3,6 +3,7 @@ import { Home } from "@/pages/Home";
 import { SignUp } from "@/pages/SignUp";
 import  App  from "@/App";
 import { Activation } from "@/pages/Activation";
+import { User } from "@/pages/User";
 
 export default  createBrowserRouter([
     {
@@ -11,9 +12,8 @@ export default  createBrowserRouter([
       children : 
       [
         {
-          path: "/",
           index : true,
-          Component: Home
+          Component: Home,
         },
         {
           path: "/signup",
@@ -22,6 +22,10 @@ export default  createBrowserRouter([
         {
           path: "/activation/:token",
           Component: Activation,
+        },
+        {
+          path: "/user/:id",
+          Component: User,
         }
       ]
     }

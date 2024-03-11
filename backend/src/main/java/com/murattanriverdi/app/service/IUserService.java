@@ -14,4 +14,6 @@ public interface IUserService {
     public void activateUser(String token);
 
     Page<UserListDao> getUserList(Pageable pageable);
+
+    UserListDao getUserById(Long id);
 }

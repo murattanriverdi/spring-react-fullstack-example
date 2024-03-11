@@ -7,6 +7,7 @@ import com.murattanriverdi.app.entity.User;
 import com.murattanriverdi.app.exceptions.ActivationNotificationException;
 import com.murattanriverdi.app.exceptions.InvalidTokenException;
 import com.murattanriverdi.app.exceptions.NonUniqueEmailException;
+import com.murattanriverdi.app.exceptions.NotFoundException;
 import com.murattanriverdi.app.mapper.UserMapper;
 import com.murattanriverdi.app.repository.UserRepository;
 import com.murattanriverdi.app.service.IUserService;
@@ -48,7 +49,7 @@ public class UserService implements IUserService {
             emailService.sendActivationEmail(user.getEmail(), user.getActivationToken());
         } catch (DataIntegrityViolationException ex) {
             throw new NonUniqueEmailException();
-        }catch (MailException ex){
+        } catch (MailException ex) {
             throw new ActivationNotificationException();
         }
     }
@@ -56,10 +57,10 @@ public class UserService implements IUserService {
     @Override
     public void activateUser(String token) {
         Optional<User> userOpt = userRepository.findByActivationToken(token);
-        if(userOpt.isEmpty()){
+        if (userOpt.isEmpty()) {
             throw new InvalidTokenException();
         }
-        User user  = userOpt.get();
+        User user = userOpt.get();
 
         user.setActive(Boolean.TRUE);
         user.setActivationToken(null);
@@ -70,6 +71,11 @@ public class UserService implements IUserService {
     @Override
     public Page<UserListDao> getUserList(Pageable pageable) {
         return userRepository.findAll(pageable).map(userMapper::userToUserListDao);
+    }
+
+    @Override
+    public UserListDao getUserById(Long id) {
+        return userMapper.userToUserListDao(userRepository.findById(id).orElseThrow(() -> new NotFoundException(id)));
     }
 
 }
