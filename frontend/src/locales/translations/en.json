@@ -6,5 +6,6 @@
     "passwordRepeat": "Password Repeat",
     "passwordMismatch": "Password Mismatch",
     "genericError": "Unexpected error occured. Please Try Again",
-    "userNotFound": "User not found"
+    "userNotFound": "User not found",
+    "login" : "Login"
 }

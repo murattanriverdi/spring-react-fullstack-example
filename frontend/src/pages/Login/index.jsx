@@ -1,30 +1,16 @@
-import { useEffect, useMemo, useState } from "react";
-import { signUp } from "./api";
+import { useEffect, useState } from "react";
 import { Input } from "@/utils/components/Input";
 import { useTranslation } from "react-i18next";
 import { Alert } from "@/utils/components/Alert";
-import { Spinner } from "@/utils/components/Spinner";
 import { Button } from "@/utils/components/Button";
 
-export function SignUp() {
-  const [username, setUsername] = useState();
+export function Login() {
   const [email, setEmail] = useState();
   const [password, setPassword] = useState();
-  const [passwordRepeat, setPasswordRepeat] = useState();
   const [isProcessing, setProcessing] = useState(false);
-  const [successMessage, setSuccessMessage] = useState();
   const [errors, setErrors] = useState({});
   const [generalError, setGeneralError] = useState();
   const { t } = useTranslation();
-
-  useEffect(() => {
-    setErrors(function (lastErrors) {
-      return {
-        ...lastErrors,
-        username: undefined,
-      };
-    });
-  }, [username]);
 
   useEffect(() => {
     setErrors(function (lastErrors) {
@@ -46,18 +32,17 @@ export function SignUp() {
 
   const onSubmit = async (event) => {
     event.preventDefault();
-    setSuccessMessage();
     setGeneralError();
     setProcessing(true);
     try {
-      const response = await signUp({
+      /*const response = await signUp({
         username,
         email,
         password,
       });
-      setSuccessMessage(response.data.message);
+      setSuccessMessage(response.data.message);*/
     } catch (axiosError) {
-      if (axiosError.response?.data) {
+      /*if (axiosError.response?.data) {
         if (axiosError.response.data.status === 400) {
           setErrors(axiosError.response.data.validationErrors);
         } else {
@@ -65,34 +50,20 @@ export function SignUp() {
         }
       } else {
         setGeneralError(t("genericError"));
-      }
+      }*/
     } finally {
-      setProcessing(false);
+      //setProcessing(false);
     }
   };
-
-  const passwordRepeatError = useMemo(() => {
-    if (password && password !== passwordRepeat) {
-      return t("passwordMismatch");
-    }
-    return "";
-  }, [password, passwordRepeat, t]);
 
   return (
     <div className="container">
       <div className="col-lg-6 offset-lg-3 col-md-8 offset-md-2">
         <form className="card" onSubmit={onSubmit}>
           <div className="text-center card-header">
-            <h1>{t("signUp")}</h1>
+            <h1>{t("login")}</h1>
           </div>
           <div className="card-body">
-            <Input
-              id="username"
-              label={t("username")}
-              error={errors.username}
-              onChange={(event) => setUsername(event.target.value)}
-            />
-
             <Input
               id="email"
               label={t("email")}
@@ -108,23 +79,13 @@ export function SignUp() {
               onChange={(event) => setPassword(event.target.value)}
             />
 
-            <Input
-              id="passwordRepeat"
-              label={t("passwordRepeat")}
-              error={passwordRepeatError}
-              type="password"
-              onChange={(event) => setPasswordRepeat(event.target.value)}
-            />
-
-            {successMessage && <Alert>{successMessage}</Alert>}
-
             {generalError && <Alert styleType="danger">{generalError}</Alert>}
             <div className="text-center">
               <Button
-                disabled={!password || password !== passwordRepeat}
+                disabled={!email || !password}
                 isProcessing={isProcessing}
               >
-                {t("signUp")}
+                {t("login")}
               </Button>
             </div>
           </div>

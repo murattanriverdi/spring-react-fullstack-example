@@ -6,5 +6,6 @@
     "passwordRepeat": "Parola Tekrar",
     "passwordMismatch": "Parolalar Uyuşmuyor",
     "genericError": "Beklenmedik Bir Hata Oluştu. Lütfen Tekrar Deneyin.",
-    "userNotFound": "Kullanıcı Bulunamadı!"
+    "userNotFound": "Kullanıcı Bulunamadı!",
+    "login" : "Giriş Yap"
 }
