@@ -5,6 +5,6 @@ import com.murattanriverdi.app.util.MessagesUtil;
 public class InvalidTokenException extends RuntimeException{
 
     public InvalidTokenException(){
-        super(MessagesUtil.getMessage("app.messages.error.activationNotification.invalidToken"));
+        super(MessagesUtil.getMessage("app.message.error.activationNotification.invalidToken"));
     }
 }

@@ -1,6 +1,6 @@
 package com.murattanriverdi.app.service.impl;
 
-import com.murattanriverdi.app.dao.UserListDao;
+import com.murattanriverdi.app.dao.UserDao;
 import com.murattanriverdi.app.dto.CreateUserRequestDto;
 import com.murattanriverdi.app.email.IEmailService;
 import com.murattanriverdi.app.entity.User;
@@ -69,13 +69,18 @@ public class UserService implements IUserService {
     }
 
     @Override
-    public Page<UserListDao> getUserList(Pageable pageable) {
+    public Page<UserDao> getUserList(Pageable pageable) {
         return userRepository.findAll(pageable).map(userMapper::userToUserListDao);
     }
 
     @Override
-    public UserListDao getUserById(Long id) {
+    public UserDao getUserById(Long id) {
         return userMapper.userToUserListDao(userRepository.findById(id).orElseThrow(() -> new NotFoundException(id)));
+    }
+
+    @Override
+    public Optional<User> findByEmail(String email) {
+        return userRepository.findUserByEmail(email);
     }
 
 }

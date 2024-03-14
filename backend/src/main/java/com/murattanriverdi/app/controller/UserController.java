@@ -1,7 +1,7 @@
 package com.murattanriverdi.app.controller;
 
 import com.murattanriverdi.app.common.ApiError;
-import com.murattanriverdi.app.dao.UserListDao;
+import com.murattanriverdi.app.dao.UserDao;
 import com.murattanriverdi.app.dto.CreateUserRequestDto;
 import com.murattanriverdi.app.exceptions.ActivationNotificationException;
 import com.murattanriverdi.app.exceptions.InvalidTokenException;
@@ -51,12 +51,12 @@ public class UserController {
     }
 
     @GetMapping("/list")
-    Page<UserListDao> getUserList(Pageable pageable){
+    Page<UserDao> getUserList(Pageable pageable){
         return userService.getUserList(pageable);
     }
 
     @GetMapping("/get/{id}")
-    UserListDao getUserById(@PathVariable Long id){
+    UserDao getUserById(@PathVariable Long id){
         return userService.getUserById(id);
     }
 
@@ -66,7 +66,7 @@ public class UserController {
     ResponseEntity<ApiError> handleMethodArgumentNotValidException(MethodArgumentNotValidException exception, HttpServletRequest request) {
         ApiError apiError = new ApiError();
         apiError.setPath(request.getRequestURI());
-        apiError.setMessage(MessagesUtil.getMessage("app.messages.error.validation.error"));
+        apiError.setMessage(MessagesUtil.getMessage("app.message.error.validation.error"));
         apiError.setStatus(HttpStatus.BAD_REQUEST.value());
 
         apiError.setValidationErrors(

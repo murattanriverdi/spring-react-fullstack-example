@@ -8,7 +8,7 @@ import java.util.Map;
 public class NonUniqueEmailException extends RuntimeException {
 
     public NonUniqueEmailException(){
-        super(MessagesUtil.getMessage("app.messages.error.validation.error"));
+        super(MessagesUtil.getMessage("app.message.error.validation.error"));
     }
 
     public Map<String,String> getValidationErrors(){

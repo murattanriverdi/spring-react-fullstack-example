@@ -1,6 +1,6 @@
 package com.murattanriverdi.app.mapper;
 
-import com.murattanriverdi.app.dao.UserListDao;
+import com.murattanriverdi.app.dao.UserDao;
 import com.murattanriverdi.app.dto.CreateUserRequestDto;
 import com.murattanriverdi.app.entity.User;
 import org.mapstruct.Mapper;
@@ -28,7 +28,7 @@ public interface UserMapper {
     @Mapping(target = "username", source = "username")
     @Mapping(target = "email", source = "email")
     @Mapping(target = "image", source = "image")
-    UserListDao userToUserListDao(User user);
+    UserDao userToUserListDao(User user);
 
 
 }

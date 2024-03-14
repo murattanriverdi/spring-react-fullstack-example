@@ -3,7 +3,7 @@ package com.murattanriverdi.app.dao;
 import lombok.Data;
 
 @Data
-public class UserListDao {
+public class UserDao {
 
     private Long id;
     private String username;
