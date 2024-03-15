@@ -25,19 +25,12 @@ public class AuthController {
     private final IAuthService authService;
 
     @PostMapping("/auth")
-    ResponseEntity<AuthResponse> handleAuthentication(@Valid @RequestBody CredentialsDto credentials){
+    ResponseEntity<AuthResponse> handleAuthentication(@Valid @RequestBody CredentialsDto credentials) {
         return ResponseEntity.ok(authService.authenticate(credentials));
     }
 
 
-    @ExceptionHandler(AuthenticationException.class)
-    ResponseEntity<ApiError> handleAuthenticationException(AuthenticationException exception, HttpServletRequest request) {
-        ApiError apiError = new ApiError();
-        apiError.setPath(request.getRequestURI());
-        apiError.setMessage(exception.getMessage());
-        apiError.setStatus(HttpStatus.UNAUTHORIZED.value());
-        return ResponseEntity.status(HttpStatus.UNAUTHORIZED.value()).body(apiError);
-    }
+
 
 
 }

@@ -4,7 +4,6 @@ import com.murattanriverdi.app.auth.dao.AuthResponse;
 import com.murattanriverdi.app.auth.dto.CredentialsDto;
 import com.murattanriverdi.app.auth.exception.AuthenticationException;
 import com.murattanriverdi.app.auth.service.IAuthService;
-import com.murattanriverdi.app.auth.token.Token;
 import com.murattanriverdi.app.auth.token.service.ITokenService;
 import com.murattanriverdi.app.entity.User;
 import com.murattanriverdi.app.mapper.UserMapper;
