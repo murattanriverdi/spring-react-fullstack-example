@@ -28,9 +28,4 @@ public class AuthController {
     ResponseEntity<AuthResponse> handleAuthentication(@Valid @RequestBody CredentialsDto credentials) {
         return ResponseEntity.ok(authService.authenticate(credentials));
     }
-
-
-
-
-
 }

@@ -3,6 +3,7 @@ import { Input } from "@/utils/components/Input";
 import { useTranslation } from "react-i18next";
 import { Alert } from "@/utils/components/Alert";
 import { Button } from "@/utils/components/Button";
+import { login } from "./api";
 
 export function Login() {
   const [email, setEmail] = useState();
@@ -35,6 +36,9 @@ export function Login() {
     setGeneralError();
     setProcessing(true);
     try {
+      await login({
+        email,password
+      })
       /*const response = await signUp({
         username,
         email,
@@ -42,7 +46,7 @@ export function Login() {
       });
       setSuccessMessage(response.data.message);*/
     } catch (axiosError) {
-      /*if (axiosError.response?.data) {
+      if (axiosError.response?.data) {
         if (axiosError.response.data.status === 400) {
           setErrors(axiosError.response.data.validationErrors);
         } else {
@@ -50,9 +54,9 @@ export function Login() {
         }
       } else {
         setGeneralError(t("genericError"));
-      }*/
+      }
     } finally {
-      //setProcessing(false);
+      setProcessing(false);
     }
   };
 
